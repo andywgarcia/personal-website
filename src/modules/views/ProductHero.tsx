@@ -3,7 +3,7 @@ import Button from "../components/Button";
 import Typography from "../components/Typography";
 import ProductHeroLayout from "./ProductHeroLayout";
 import ContactForm from "./ContactForm";
-import { Snackbar } from "@mui/material";
+import Snackbar from "../components/Snackbar";
 
 const backgroundImage =
   "https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400";
@@ -11,6 +11,9 @@ const backgroundImage =
 export default function ProductHero() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
+  const showSnackbar = () => {
+    setIsSnackbarOpen(true);
+  };
 
   return (
     <ProductHeroLayout
@@ -52,11 +55,11 @@ export default function ProductHero() {
       <ContactForm
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
+        onSubmit={showSnackbar}
       />
       <Snackbar
         open={isSnackbarOpen}
         onClose={() => setIsSnackbarOpen(false)}
-        autoHideDuration={2000}
         message="My email will be automatically emailed to you very soon. Thank you!"
       />
     </ProductHeroLayout>

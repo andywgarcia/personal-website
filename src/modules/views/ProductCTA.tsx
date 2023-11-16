@@ -108,7 +108,6 @@ function ProductCTA() {
       <Snackbar
         open={open}
         onClose={handleClose}
-        autoHideDuration={2000}
         message="Thank you for reaching out. I'll be in contact with you shortly!"
       />
     </Container>

@@ -9,7 +9,7 @@ import {
   TextField,
 } from "@mui/material";
 import { MuiTelInput, matchIsValidTel } from "mui-tel-input";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
 export interface ContactFormProps {
@@ -30,9 +30,15 @@ const validateEmail = (email: string) => {
 };
 export default function ContactForm(props: ContactFormProps) {
   const { onClose, isOpen, onSubmit = () => {} } = props;
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const onCloseInternal = () => {
+    setRecaptchaResponse(null);
+    recaptchaRef?.current?.reset();
+    onClose();
+  };
   const onSend = () => {
     onSubmit();
-    onClose();
+    onCloseInternal();
   };
 
   const [fullName, setFullName] = useState<string | null>(null);
@@ -45,9 +51,13 @@ export default function ContactForm(props: ContactFormProps) {
     null,
   );
   const isValidForm =
-    !!recaptchaResponse && phoneNumber && matchIsValidTel(phoneNumber);
+    !!recaptchaResponse &&
+    phoneNumber &&
+    matchIsValidTel(phoneNumber) &&
+    !!fullName &&
+    validateEmail(email || "");
   return (
-    <Dialog onClose={onClose} open={isOpen}>
+    <Dialog onClose={onCloseInternal} open={isOpen}>
       <DialogTitle>Request Resume</DialogTitle>
       <DialogContent>
         <DialogContentText>
@@ -61,7 +71,7 @@ export default function ContactForm(props: ContactFormProps) {
             variant="filled"
             fullWidth
             required
-            value={fullName}
+            value={fullName || ""}
             onChange={(e) => setFullName(e.target.value)}
             onBlur={(e) => setFullName(e.target.value || "")}
             error={fullName !== null && !fullName}
@@ -73,7 +83,7 @@ export default function ContactForm(props: ContactFormProps) {
             fullWidth
             required
             type="email"
-            value={email}
+            value={email || ""}
             onChange={(e) => setEmail(e.target.value)}
             onBlur={(e) => setEmail(e.target.value || "")}
             error={email !== null && !validateEmail(email)}
@@ -106,7 +116,7 @@ export default function ContactForm(props: ContactFormProps) {
             placeholder="Please enter the company you are inquiring from"
             variant="filled"
             fullWidth
-            value={company}
+            value={company || ""}
             onChange={(e) => setCompany(e.target.value)}
           />
           <TextField
@@ -116,20 +126,21 @@ export default function ContactForm(props: ContactFormProps) {
             fullWidth
             multiline
             rows={4}
-            value={message}
+            value={message || ""}
             onChange={(e) => setMessage(e.target.value)}
           />
           <ReCAPTCHA
             sitekey="6LfMBREpAAAAAJMQs1DFuFq9UomsqvzjcIUi2Emk"
             onChange={(token) => setRecaptchaResponse(token)}
             id="recaptcha"
+            ref={recaptchaRef}
           ></ReCAPTCHA>
         </Box>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
+        <Button onClick={onCloseInternal}>Cancel</Button>
         <Button onClick={onSend} variant="contained" disabled={!isValidForm}>
-          Send
+          Send Request
         </Button>
       </DialogActions>
     </Dialog>

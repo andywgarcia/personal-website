@@ -58,7 +58,7 @@ function Snackbar(props: SnackbarProps & ExtraSnackbarProps) {
   return (
     <MuiSnackbar
       anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      autoHideDuration={6000}
+      autoHideDuration={3000}
       TransitionComponent={Transition}
       message={
         <React.Fragment>
