@@ -11,6 +11,7 @@ import {
 import { MuiTelInput, matchIsValidTel } from "mui-tel-input";
 import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import { validateEmail } from "./validateEmail";
 
 export interface ContactFormProps {
   isOpen: boolean;
@@ -18,16 +19,6 @@ export interface ContactFormProps {
   onSubmit?: () => void;
 }
 
-const validateEmail = (email: string) => {
-  if (!email) {
-    return false;
-  }
-  return String(email)
-    .toLowerCase()
-    .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    );
-};
 export default function ContactForm(props: ContactFormProps) {
   const { onClose, isOpen, onSubmit = () => {} } = props;
   const recaptchaRef = useRef<ReCAPTCHA>(null);

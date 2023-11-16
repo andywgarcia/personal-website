@@ -6,19 +6,63 @@ import Typography from "../components/Typography";
 import TextField from "../components/TextField";
 import Snackbar from "../components/Snackbar";
 import Button from "../components/Button";
+import { useRef, useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
+import { validateEmail } from "./validateEmail";
 
-function ProductCTA() {
-  const [open, setOpen] = React.useState(false);
+const snackbarSuccessMessage =
+  "Thank you for reaching out. I'll be in contact with you shortly!";
+const snackBarRecaptchaError =
+  "Please verify you are not a robot by completing the recaptcha.";
+const snackbarErrorMessage = "Something went wrong. Please try again.";
 
+function GetInTouchSection() {
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState(
+    snackbarSuccessMessage,
+  );
+  const [recaptchaResponse, setRecaptchaResponse] = useState<string | null>(
+    null,
+  );
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  const [email, setEmail] = useState<string | null>(null);
+  const onEmailChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setEmailErrorMessage(undefined);
+    setEmail(e.target.value);
+  };
+  const [emailErrorMessage, setEmailErrorMessage] = useState<string>();
+  const [message, setMessage] = useState<string>("");
+
+  const clearForm = () => {
+    recaptchaRef?.current?.reset();
+    setMessage("");
+    setEmail("");
+  };
+
+  const isValidForm = !!recaptchaResponse && validateEmail(email || "");
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setOpen(true);
+    setEmailErrorMessage(undefined);
+    if (isValidForm) {
+      console.log(email, message, recaptchaResponse);
+      setSnackbarMessage(snackbarSuccessMessage);
+      setIsSnackbarOpen(true);
+      clearForm();
+    } else if (!validateEmail(email || "")) {
+      setEmailErrorMessage("Please enter your email");
+    } else if (!recaptchaResponse) {
+      setSnackbarMessage(snackBarRecaptchaError);
+      setIsSnackbarOpen(true);
+    } else {
+      setSnackbarMessage(snackbarErrorMessage);
+      setIsSnackbarOpen(true);
+    }
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setIsSnackbarOpen(false);
   };
-
   return (
     <Container component="section" sx={{ mt: 10, display: "flex" }}>
       <Grid container>
@@ -47,12 +91,20 @@ function ProductCTA() {
                 what, let's connect!
               </Typography>
               <TextField
+                value={email}
+                onChange={onEmailChange}
                 noBorder
                 placeholder="Your email"
                 variant="standard"
                 fullWidth
+                helperText={emailErrorMessage}
+                required
+                error={!!emailErrorMessage}
+                type="email"
               />
               <TextField
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 noBorder
                 placeholder="Message"
                 variant="standard"
@@ -60,6 +112,11 @@ function ProductCTA() {
                 multiline
                 rows={4}
               />
+              <ReCAPTCHA
+                sitekey="6LfMBREpAAAAAJMQs1DFuFq9UomsqvzjcIUi2Emk"
+                onChange={(token) => setRecaptchaResponse(token)}
+                ref={recaptchaRef}
+              ></ReCAPTCHA>
               <Button
                 type="submit"
                 color="primary"
@@ -106,12 +163,12 @@ function ProductCTA() {
         </Grid>
       </Grid>
       <Snackbar
-        open={open}
+        open={isSnackbarOpen}
         onClose={handleClose}
-        message="Thank you for reaching out. I'll be in contact with you shortly!"
+        message={snackbarMessage}
       />
     </Container>
   );
 }
 
-export default ProductCTA;
+export default GetInTouchSection;
