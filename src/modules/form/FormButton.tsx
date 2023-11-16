@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { ButtonProps } from '@mui/material';
-import Button from '../components/Button';
-import defer from './defer';
+import * as React from "react";
+import { ButtonProps } from "@mui/material";
+import Button from "../components/Button";
+import defer from "./defer";
 
 interface FormButtonProps {
   disabled?: boolean;

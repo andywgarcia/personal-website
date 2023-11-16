@@ -16,20 +16,26 @@
     "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
     "markdown-to-jsx": "^7.3.2",
+    "mui-tel-input": "^4.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-final-form": "^6.5.9"
+    "react-final-form": "^6.5.9",
+    "react-google-recaptcha": "^3.1.0"
   },
   "devDependencies": {
     "@types/markdown-to-jsx": "^7.0.1",
+    "@types/node": "^20.9.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
+    "@types/react-google-recaptcha": "^2.1.8",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "eslint": "^8.45.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "prettier": "^3.1.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   }

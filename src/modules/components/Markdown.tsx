@@ -1,7 +1,7 @@
-import ReactMarkdown from 'markdown-to-jsx';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
+import ReactMarkdown from "markdown-to-jsx";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
 
 const options = {
   overrides: {
@@ -9,22 +9,22 @@ const options = {
       component: Typography,
       props: {
         gutterBottom: true,
-        variant: 'h4',
+        variant: "h4",
       },
     },
     h2: {
       component: Typography,
-      props: { gutterBottom: true, variant: 'h6' },
+      props: { gutterBottom: true, variant: "h6" },
     },
     h3: {
       component: Typography,
-      props: { gutterBottom: true, variant: 'subtitle1' },
+      props: { gutterBottom: true, variant: "subtitle1" },
     },
     h4: {
       component: Typography,
       props: {
         gutterBottom: true,
-        variant: 'caption',
+        variant: "caption",
         paragraph: true,
       },
     },

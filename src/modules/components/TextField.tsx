@@ -1,42 +1,42 @@
-import clsx from 'clsx';
-import { styled, Theme } from '@mui/material/styles';
+import clsx from "clsx";
+import { styled, Theme } from "@mui/material/styles";
 import MuiTextField, {
   FilledTextFieldProps,
   StandardTextFieldProps,
-} from '@mui/material/TextField';
-import { selectClasses } from '@mui/material/Select';
-import { inputLabelClasses } from '@mui/material/InputLabel';
+} from "@mui/material/TextField";
+import { selectClasses } from "@mui/material/Select";
+import { inputLabelClasses } from "@mui/material/InputLabel";
 
 const inputStyleMappingClasses = {
-  small: 'OnePirateTextField-inputSizeSmall',
-  medium: 'OnePirateTextField-inputSizeMedium',
-  large: 'OnePirateTextField-inputSizeLarge',
-  xlarge: 'OnePirateTextField-inputSizeXLarge',
+  small: "OnePirateTextField-inputSizeSmall",
+  medium: "OnePirateTextField-inputSizeMedium",
+  large: "OnePirateTextField-inputSizeLarge",
+  xlarge: "OnePirateTextField-inputSizeXLarge",
 };
 
 const classes = {
-  root: 'OnePirateTextField-root',
-  input: 'OnePirateTextField-input',
-  inputBorder: 'OnePirateTextField-inputBorder',
+  root: "OnePirateTextField-root",
+  input: "OnePirateTextField-input",
+  inputBorder: "OnePirateTextField-inputBorder",
 };
 
 const styles = ({ theme }: { theme: Theme }) => ({
   [`& .${classes.root}`]: {
     padding: 0,
-    'label + &': {
+    "label + &": {
       marginTop: theme.spacing(3),
     },
   },
   [`& .${classes.input}`]: {
     minWidth: theme.spacing(6),
     backgroundColor: theme.palette.common.white,
-    '&.Mui-disabled': {
+    "&.Mui-disabled": {
       backgroundColor: theme.palette.divider,
     },
   },
   [`& .${classes.inputBorder}`]: {
-    border: '1px solid #e9ddd0',
-    '&:focus': {
+    border: "1px solid #e9ddd0",
+    "&:focus": {
       borderColor: theme.palette.secondary.main,
     },
   },
@@ -64,19 +64,19 @@ const styles = ({ theme }: { theme: Theme }) => ({
     fontSize: 18,
   },
   [`& .${selectClasses.select}`]: {
-    height: 'auto',
+    height: "auto",
     borderRadius: 0,
   },
   [`& .${selectClasses.icon}`]: {
-    top: '50%',
+    top: "50%",
     marginTop: -12,
   },
 });
 
 export interface OnePirateTextFieldProps
-  extends Omit<FilledTextFieldProps | StandardTextFieldProps, 'size'> {
+  extends Omit<FilledTextFieldProps | StandardTextFieldProps, "size"> {
   noBorder?: boolean;
-  size?: 'small' | 'medium' | 'large' | 'xlarge';
+  size?: "small" | "medium" | "large" | "xlarge";
 }
 
 function TextField(props: OnePirateTextFieldProps) {
@@ -84,7 +84,7 @@ function TextField(props: OnePirateTextFieldProps) {
     InputProps = {},
     InputLabelProps,
     noBorder,
-    size = 'medium',
+    size = "medium",
     SelectProps,
     ...other
   } = props;

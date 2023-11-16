@@ -1,0 +1,8 @@
+.social-media-icon-button {
+  filter: grayscale(100%) brightness(100);
+  transition: opacity 0.15s;
+}
+
+.social-media-icon-button:hover {
+  opacity: 0.6;
+}
