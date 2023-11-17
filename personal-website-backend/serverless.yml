@@ -1,0 +1,37 @@
+org: andywgarcia
+app: personal-website-backend
+service: personal-website-backend
+frameworkVersion: "3"
+configValidationMode: error
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  httpApi:
+    cors:
+      allowedOrigins:
+        - http://localhost:5173
+      allowedMethods:
+        - OPTIONS
+        - POST
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - ses:SendEmail
+          Resource: "*"
+
+functions:
+  requestResume:
+    handler: request-resume-handler.handler
+    events:
+      - httpApi:
+          path: /request-resume
+          method: post
+  contact:
+    handler: contact-handler.handler
+    events:
+      - httpApi:
+          path: /contact
+          method: post

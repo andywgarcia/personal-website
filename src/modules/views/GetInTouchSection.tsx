@@ -25,6 +25,9 @@ function GetInTouchSection() {
     null,
   );
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const resetRecaptcha = () => {
+    recaptchaRef?.current?.reset();
+  };
 
   const [email, setEmail] = useState<string | null>(null);
   const onEmailChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -35,20 +38,42 @@ function GetInTouchSection() {
   const [message, setMessage] = useState<string>("");
 
   const clearForm = () => {
-    recaptchaRef?.current?.reset();
+    resetRecaptcha();
     setMessage("");
     setEmail("");
   };
 
   const isValidForm = !!recaptchaResponse && validateEmail(email || "");
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setEmailErrorMessage(undefined);
     if (isValidForm) {
       console.log(email, message, recaptchaResponse);
-      setSnackbarMessage(snackbarSuccessMessage);
-      setIsSnackbarOpen(true);
-      clearForm();
+      try {
+        const response = await fetch(
+          "https://xfw1n5qcrb.execute-api.us-east-1.amazonaws.com/contact",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              recaptchaResponse,
+              email,
+              message,
+            }),
+          },
+        );
+        const parsedResponse = await response.json();
+        if (!response.ok || !parsedResponse.success) {
+          resetRecaptcha();
+          throw new Error("Error sending email");
+        }
+        setSnackbarMessage(snackbarSuccessMessage);
+        setIsSnackbarOpen(true);
+        clearForm();
+      } catch (e) {
+        setSnackbarMessage(snackbarErrorMessage);
+        setIsSnackbarOpen(true);
+      }
     } else if (!validateEmail(email || "")) {
       setEmailErrorMessage("Please enter your email");
     } else if (!recaptchaResponse) {
