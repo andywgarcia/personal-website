@@ -16,21 +16,11 @@ import { validateEmail } from "./validateEmail";
 export interface ContactFormProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit?: () => void;
+  onSubmit?: (didError: boolean) => void;
 }
 
 export default function ContactForm(props: ContactFormProps) {
   const { onClose, isOpen, onSubmit = () => {} } = props;
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
-  const onCloseInternal = () => {
-    setRecaptchaResponse(null);
-    recaptchaRef?.current?.reset();
-    onClose();
-  };
-  const onSend = () => {
-    onSubmit();
-    onCloseInternal();
-  };
 
   const [fullName, setFullName] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
@@ -41,6 +31,45 @@ export default function ContactForm(props: ContactFormProps) {
   const [recaptchaResponse, setRecaptchaResponse] = useState<string | null>(
     null,
   );
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const resetRecaptcha = () => {
+    recaptchaRef?.current?.reset();
+    setRecaptchaResponse(null);
+  };
+  const onCloseInternal = () => {
+    resetRecaptcha();
+    onClose();
+  };
+
+  const onSend = async () => {
+    try {
+      const response = await fetch(
+        "https://xfw1n5qcrb.execute-api.us-east-1.amazonaws.com/request-resume",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            recaptchaResponse,
+            fullName,
+            email,
+            phoneNumber,
+            company,
+            message,
+          }),
+        },
+      );
+      const parsedResponse = await response.json();
+      if (!response.ok || !parsedResponse.success) {
+        resetRecaptcha();
+        onSubmit(true);
+        return;
+      }
+      onSubmit(false);
+    } catch (e) {
+      onSubmit(true);
+    }
+  };
+
   const isValidForm =
     !!recaptchaResponse &&
     phoneNumber &&

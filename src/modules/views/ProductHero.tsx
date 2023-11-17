@@ -8,10 +8,22 @@ import Snackbar from "../components/Snackbar";
 const backgroundImage =
   "https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400";
 
+const SNACKBAR_SUCCESS_MESSAGE =
+  "My email will be automatically emailed to you very soon. Thank you!";
+const SNACKBAR_ERROR_MESSAGE = "Something went wrong. Please try again.";
 export default function ProductHero() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
-  const showSnackbar = () => {
+  const [snackbarMessage, setSnackbarMessage] = useState(
+    SNACKBAR_SUCCESS_MESSAGE,
+  );
+  const onContactFormSubmit = (didError: boolean) => {
+    if (didError) {
+      setSnackbarMessage(SNACKBAR_ERROR_MESSAGE);
+    } else {
+      setSnackbarMessage(SNACKBAR_SUCCESS_MESSAGE);
+      setIsDialogOpen(false);
+    }
     setIsSnackbarOpen(true);
   };
 
@@ -55,12 +67,12 @@ export default function ProductHero() {
       <ContactForm
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
-        onSubmit={showSnackbar}
+        onSubmit={onContactFormSubmit}
       />
       <Snackbar
         open={isSnackbarOpen}
         onClose={() => setIsSnackbarOpen(false)}
-        message="My email will be automatically emailed to you very soon. Thank you!"
+        message={snackbarMessage}
       />
     </ProductHeroLayout>
   );
