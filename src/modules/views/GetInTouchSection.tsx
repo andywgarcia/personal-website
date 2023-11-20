@@ -89,7 +89,7 @@ function GetInTouchSection() {
     setIsSnackbarOpen(false);
   };
   return (
-    <Container component="section" sx={{ mt: 10, display: "flex" }}>
+    <Container component="section" sx={{ mt: 10, mb: 5, display: "flex" }}>
       <Grid container>
         <Grid item xs={12} md={6} sx={{ zIndex: 1 }}>
           <Box
@@ -173,8 +173,8 @@ function GetInTouchSection() {
           />
           <Box
             component="img"
-            src="https://images.unsplash.com/photo-1527853787696-f7be74f2e39a?auto=format&fit=crop&w=750"
-            alt="call to action"
+            src="public/static/andy-full.png"
+            alt="Andy Garcia"
             sx={{
               position: "absolute",
               top: -28,

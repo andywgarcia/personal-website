@@ -79,14 +79,15 @@ const images: Image[] = [
     width: "40%",
     linkUrl: "https://wisedoc.net/",
   },
+
   {
-    url: "https://images.unsplash.com/photo-1453747063559-36695c8771bd?auto=format&fit=crop&w=400",
-    title: "Pokemon Go Plus",
+    url: "/public/static/ifedmypet.png",
+    title: "iFedMyPet",
     width: "38%",
-    linkUrl: "https://github.com/andywgarcia/pgpemu",
+    linkUrl: "https://ifedmypet.com/",
   },
   {
-    url: "https://images.unsplash.com/photo-1523309996740-d5315f9cc28b?auto=format&fit=crop&w=400",
+    url: "/public/static/marshmallow.jpg",
     title: "Marshmallow",
     width: "38%",
     linkUrl: "https://tinyurl.com/andywgarcia",
@@ -103,10 +104,10 @@ const images: Image[] = [
     width: "40%",
   },
   {
-    url: "https://images.unsplash.com/photo-1533727937480-da3a97967e95?auto=format&fit=crop&w=400",
-    title: "iFedMyPet",
+    url: "https://images.unsplash.com/photo-1453747063559-36695c8771bd?auto=format&fit=crop&w=400",
+    title: "Pokemon Go Plus",
     width: "20%",
-    linkUrl: "https://ifedmypet.com/",
+    linkUrl: "https://github.com/andywgarcia/pgpemu",
   },
   {
     url: "https://images.unsplash.com/photo-1518136247453-74e7b5265980?auto=format&fit=crop&w=400",

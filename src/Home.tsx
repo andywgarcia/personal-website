@@ -18,7 +18,7 @@ function Index() {
       <RecentWork />
       <EducationSection />
       <GetInTouchSection />
-      <ProductSmokingHero />
+      {/* <ProductSmokingHero /> */}
       <AppFooter />
     </React.Fragment>
   );
