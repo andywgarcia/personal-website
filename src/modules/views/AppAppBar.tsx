@@ -20,7 +20,7 @@ function AppAppBar() {
             alignItems="bottom"
           >
             <img
-              src="/public/static/LI-In-Bug.png"
+              src="/static/LI-In-Bug.png"
               alt="LinkedIn"
               className="social-media-icon-button"
             />
@@ -35,7 +35,7 @@ function AppAppBar() {
             alignItems="bottom"
           >
             <img
-              src="/public/static/github-mark-white.png"
+              src="/static/github-mark-white.png"
               alt="GitHub"
               className="social-media-icon-button"
             />

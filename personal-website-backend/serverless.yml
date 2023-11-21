@@ -11,6 +11,7 @@ provider:
     cors:
       allowedOrigins:
         - http://localhost:5173
+        - https://andys-codex.com
       allowedMethods:
         - OPTIONS
         - POST

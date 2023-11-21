@@ -61,7 +61,7 @@ type Image = {
 
 const images: Image[] = [
   {
-    url: "/public/static/myprescryptive.png?auto=format&fit=crop&w=400",
+    url: "/static/myprescryptive.png?auto=format&fit=crop&w=400",
     title: "myPrescryptive",
     width: "40%",
     linkUrl: "https://my.prescryptive.com",
@@ -81,13 +81,13 @@ const images: Image[] = [
   },
 
   {
-    url: "/public/static/ifedmypet.png",
+    url: "/static/ifedmypet.png",
     title: "iFedMyPet",
     width: "38%",
     linkUrl: "https://ifedmypet.com/",
   },
   {
-    url: "/public/static/marshmallow.jpg",
+    url: "/static/marshmallow.jpg",
     title: "Marshmallow",
     width: "38%",
     linkUrl: "https://tinyurl.com/andywgarcia",
