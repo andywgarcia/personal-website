@@ -15,7 +15,7 @@
 
 @media (max-width: 899px) {
   .about-me-transitioned-content {
-    transition-delay: 0.2s;
+    transition-delay: 0.4s;
   }
 }
 
