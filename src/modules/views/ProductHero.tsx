@@ -32,33 +32,40 @@ export default function ProductHero() {
           display="flex"
           flexDirection="column"
           alignItems="center"
+          gap={2}
         >
           <Typography
             color="inherit"
             align="center"
-            variant="h2"
+            variant="h1"
             className="transitioned-content"
+            textTransform="none"
+            fontWeight="700"
           >
             Andy Garcia
           </Typography>
-          <Typography
-            color="inherit"
-            align="center"
-            variant="h5"
-            sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
-            className="transitioned-content"
-          >
-            Principal Software Engineer
-          </Typography>
-          <Typography
-            variant="body2"
-            color="inherit"
-            sx={{ mt: 2 }}
-            className="transitioned-content"
-          >
-            Strategic software engineer, driving innovation. Proven leader
-            achieving team success.
-          </Typography>
+          <Box className="transitioned-content">
+            <Typography
+              color="inherit"
+              align="center"
+              variant="h5"
+              component="h2"
+              textTransform="none"
+              letterSpacing={0}
+            >
+              Strategic software engineer and proven leader,
+            </Typography>
+            <Typography
+              color="inherit"
+              align="center"
+              variant="h5"
+              component="h2"
+              textTransform="none"
+              letterSpacing={0}
+            >
+              driving innovation and achieving team success
+            </Typography>
+          </Box>
         </Box>
       </ProductHeroLayout>
     </>
