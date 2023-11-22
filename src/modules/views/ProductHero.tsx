@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Button from "../components/Button";
 import Typography from "../components/Typography";
 import ProductHeroLayout from "./ProductHeroLayout";
 import ContactForm from "./ContactForm";
 import Snackbar from "../components/Snackbar";
 
-const backgroundImage =
-  "https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400";
+import "./ProductHero.css";
+import useOnScreen from "../useOnScreen";
+import { Box } from "@mui/material";
+
+// const backgroundImage =
+//   "https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400";
 
 const SNACKBAR_SUCCESS_MESSAGE =
   "My email will be automatically emailed to you very soon. Thank you!";
@@ -17,6 +21,7 @@ export default function ProductHero() {
   const [snackbarMessage, setSnackbarMessage] = useState(
     SNACKBAR_SUCCESS_MESSAGE,
   );
+  const onRequestResumeClick = () => setIsDialogOpen(true);
   const onContactFormSubmit = (didError: boolean) => {
     if (didError) {
       setSnackbarMessage(SNACKBAR_ERROR_MESSAGE);
@@ -27,43 +32,75 @@ export default function ProductHero() {
     setIsSnackbarOpen(true);
   };
 
+  const ref = useRef<HTMLDivElement>(null);
+  const isVisible = useOnScreen(ref);
   return (
-    <ProductHeroLayout
-      sxBackground={{
-        // backgroundImage: `url(${backgroundImage})`,
-        backgroundColor: "#7fc7d9", // Average color of the background image.
-        backgroundPosition: "center",
-      }}
-    >
-      {/* Increase the network loading priority of the background image. */}
-      <img
-        style={{ display: "none" }}
-        src={backgroundImage}
-        alt="increase priority"
-      />
-      <Typography color="inherit" align="center" variant="h2" marked="center">
-        Principal Software Engineer
-      </Typography>
-      <Typography
-        color="inherit"
-        align="center"
-        variant="h5"
-        sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
+    <>
+      <ProductHeroLayout
+        sxBackground={{
+          // backgroundImage: `url(${backgroundImage})`,
+          backgroundColor: "#7fc7d9", // Average color of the background image.
+          backgroundPosition: "center",
+        }}
       >
-        Strategic software engineer, driving innovation.
-      </Typography>
-      <Button
-        color="secondary"
-        variant="contained"
-        size="large"
-        sx={{ minWidth: 200 }}
-        onClick={() => setIsDialogOpen(true)}
-      >
-        Request Resume
-      </Button>
-      <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
-        Proven leader achieving team success.
-      </Typography>
+        {/* Increase the network loading priority of the background image. */}
+        {/* <img
+          style={{ display: "none" }}
+          src={backgroundImage}
+          alt="increase priority"
+        /> */}
+        <Box
+          ref={ref}
+          className={`animated-section animated-section-hidden ${
+            isVisible && "animated-section-visible"
+          }`}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+        >
+          <Typography
+            color="inherit"
+            align="center"
+            variant="h2"
+            marked="center"
+            className="animated-content"
+          >
+            Principal Software Engineer
+          </Typography>
+          <Typography
+            color="inherit"
+            align="center"
+            variant="h5"
+            sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
+            className="animated-content"
+          >
+            Strategic software engineer, driving innovation.
+          </Typography>
+          <Box
+            className={`
+          animated-button-hidden
+          ${isVisible && "animated-button-visible"}`}
+          >
+            <Button
+              color="secondary"
+              variant="contained"
+              size="large"
+              sx={{ minWidth: 200 }}
+              onClick={onRequestResumeClick}
+            >
+              Request Resume
+            </Button>
+          </Box>
+          <Typography
+            variant="body2"
+            color="inherit"
+            sx={{ mt: 2 }}
+            className="animated-content"
+          >
+            Proven leader achieving team success.
+          </Typography>
+        </Box>
+      </ProductHeroLayout>
       <ContactForm
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
@@ -74,6 +111,6 @@ export default function ProductHero() {
         onClose={() => setIsSnackbarOpen(false)}
         message={snackbarMessage}
       />
-    </ProductHeroLayout>
+    </>
   );
 }
