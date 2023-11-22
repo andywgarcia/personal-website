@@ -150,7 +150,7 @@ export default function ContactForm(props: ContactFormProps) {
             onChange={(e) => setMessage(e.target.value)}
           />
           <ReCAPTCHA
-            sitekey="6LfMBREpAAAAAJMQs1DFuFq9UomsqvzjcIUi2Emk"
+            sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
             onChange={(token) => setRecaptchaResponse(token)}
             id="recaptcha"
             ref={recaptchaRef}

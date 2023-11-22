@@ -138,7 +138,7 @@ function GetInTouchSection() {
                 rows={4}
               />
               <ReCAPTCHA
-                sitekey="6LfMBREpAAAAAJMQs1DFuFq9UomsqvzjcIUi2Emk"
+                sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
                 onChange={(token) => setRecaptchaResponse(token)}
                 ref={recaptchaRef}
               ></ReCAPTCHA>
