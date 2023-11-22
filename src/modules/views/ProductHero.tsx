@@ -1,10 +1,8 @@
 import { useRef } from "react";
-import Typography from "../components/Typography";
 import ProductHeroLayout from "./ProductHeroLayout";
-
 import "./ProductHero.css";
 import useOnScreen from "../useOnScreen";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const backgroundImage = "public/static/blue-wavy-background.jpg";
 
@@ -39,7 +37,6 @@ export default function ProductHero() {
             color="inherit"
             align="center"
             variant="h2"
-            marked="center"
             className="transitioned-content"
           >
             Andy Garcia

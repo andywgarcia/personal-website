@@ -2,13 +2,10 @@ import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import AppBar from "../components/AppBar";
 import Toolbar from "../components/Toolbar";
-
 import "./AppAppBar.css";
-import ResumeButton from "../components/ResumeButton";
 import { useState } from "react";
 import ContactForm from "./ContactForm";
 import Snackbar from "../components/Snackbar";
-import Typography from "../components/Typography";
 import Button from "@mui/material/Button";
 
 const SNACKBAR_SUCCESS_MESSAGE =
@@ -31,7 +28,12 @@ function AppAppBar() {
     setIsSnackbarOpen(true);
   };
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const onRequestResumeClick = () => setIsDialogOpen(true);
+  const onRequestResumeClick: React.MouseEventHandler<HTMLAnchorElement> = (
+    e,
+  ) => {
+    e.stopPropagation();
+    setIsDialogOpen(true);
+  };
   return (
     <Box>
       <AppBar position="fixed" sx={{ backgroundColor: "#FFFFFF" }}>
@@ -59,7 +61,9 @@ function AppAppBar() {
             <Button href="https://github.com/andywgarcia" target="_blank">
               GitHub
             </Button>
-            <Button onClick={onRequestResumeClick}>Resume</Button>
+            <Button component="a" onClick={onRequestResumeClick}>
+              Resume
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>

@@ -2,13 +2,13 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import Typography from "../components/Typography";
 import TextField from "../components/TextField";
 import Snackbar from "../components/Snackbar";
 import ResumeButton from "../components/ResumeButton";
 import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { validateEmail } from "./validateEmail";
+import Typography from "@mui/material/Typography";
 
 const snackbarSuccessMessage =
   "Thank you for reaching out. I'll be in contact with you shortly!";

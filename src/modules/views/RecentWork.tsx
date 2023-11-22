@@ -2,7 +2,7 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import ButtonBase from "@mui/material/ButtonBase";
 import Container from "@mui/material/Container";
-import Typography from "../components/Typography";
+import Typography from "@mui/material/Typography";
 
 const ImageBackdrop = styled("div")(({ theme }) => ({
   position: "absolute",
@@ -124,8 +124,8 @@ export default function RecentWork() {
   };
   return (
     <Container component="section" sx={{ mt: 8, mb: 4 }}>
-      <Typography variant="h4" marked="center" align="center" component="h2">
-        Some of my work
+      <Typography variant="h4" align="center" component="h2">
+        Featured Projects
       </Typography>
       <Box sx={{ mt: 8, display: "flex", flexWrap: "wrap" }}>
         {images.map((image) => (
