@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 import Typography from "../components/Typography";
 import TextField from "../components/TextField";
 import Snackbar from "../components/Snackbar";
-import Button from "../components/Button";
+import ResumeButton from "../components/ResumeButton";
 import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { validateEmail } from "./validateEmail";
@@ -142,14 +142,14 @@ function GetInTouchSection() {
                 onChange={(token) => setRecaptchaResponse(token)}
                 ref={recaptchaRef}
               ></ReCAPTCHA>
-              <Button
+              <ResumeButton
                 type="submit"
                 color="primary"
                 variant="contained"
                 fullWidth
               >
                 Connect
-              </Button>
+              </ResumeButton>
             </Box>
           </Box>
         </Grid>
@@ -173,16 +173,16 @@ function GetInTouchSection() {
           />
           <Box
             component="img"
-            src="public/static/andy-full.png"
+            src="public/static/andy-headshot.jpeg"
             alt="Andy Garcia"
             sx={{
               position: "absolute",
               top: -28,
-              left: -28,
+              left: -40,
               right: 0,
               bottom: 0,
               width: "100%",
-              maxWidth: 600,
+              maxWidth: 500,
             }}
           />
         </Grid>

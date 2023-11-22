@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ButtonProps } from "@mui/material";
-import Button from "../components/Button";
+import ResumeButton from "../components/ResumeButton";
 import defer from "./defer";
 
 interface FormButtonProps {
@@ -13,7 +13,7 @@ function FormButton<C extends React.ElementType>(
 ) {
   const { disabled, mounted, ...others } = props;
   return (
-    <Button
+    <ResumeButton
       disabled={!mounted || !!disabled}
       type="submit"
       variant="contained"

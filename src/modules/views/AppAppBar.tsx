@@ -4,54 +4,76 @@ import AppBar from "../components/AppBar";
 import Toolbar from "../components/Toolbar";
 
 import "./AppAppBar.css";
+import ResumeButton from "../components/ResumeButton";
+import { useState } from "react";
+import ContactForm from "./ContactForm";
+import Snackbar from "../components/Snackbar";
+import Typography from "../components/Typography";
+import Button from "@mui/material/Button";
+
+const SNACKBAR_SUCCESS_MESSAGE =
+  "My email will be automatically emailed to you very soon. Thank you!";
+const SNACKBAR_ERROR_MESSAGE = "Something went wrong. Please try again.";
 
 function AppAppBar() {
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState(
+    SNACKBAR_SUCCESS_MESSAGE,
+  );
+
+  const onContactFormSubmit = (didError: boolean) => {
+    if (didError) {
+      setSnackbarMessage(SNACKBAR_ERROR_MESSAGE);
+    } else {
+      setSnackbarMessage(SNACKBAR_SUCCESS_MESSAGE);
+      setIsDialogOpen(false);
+    }
+    setIsSnackbarOpen(true);
+  };
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const onRequestResumeClick = () => setIsDialogOpen(true);
   return (
     <Box>
-      <AppBar position="fixed">
-        <Toolbar sx={{ justifyContent: "end", gap: 2, alignItems: "top" }}>
-          <Box
-            component="a"
-            href="https://www.linkedin.com/in/andywgarcia/"
-            target="_blank"
-            width={32}
-            height={32}
-            display="flex"
-            alignItems="bottom"
-          >
-            <img
-              src="/static/LI-In-Bug.png"
-              alt="LinkedIn"
-              className="social-media-icon-button"
-            />
+      <AppBar position="fixed" sx={{ backgroundColor: "#FFFFFF" }}>
+        <Toolbar
+          sx={{ justifyContent: "space-between", gap: 2, alignItems: "top" }}
+        >
+          <Box flexShrink={0}>
+            <Link
+              variant="h6"
+              underline="none"
+              href="/"
+              sx={{ fontSize: 24, height: 32 }}
+            >
+              {"Andy Garcia"}
+            </Link>
           </Box>
-          <Box
-            component="a"
-            href="https://github.com/andywgarcia"
-            target="_blank"
-            width={32}
-            height={32}
-            display="flex"
-            alignItems="bottom"
-          >
-            <img
-              src="/static/github-mark-white.png"
-              alt="GitHub"
-              className="social-media-icon-button"
-            />
+          <Box display="flex" gap={2} alignItems="center">
+            <Button
+              href="https://www.linkedin.com/in/andywgarcia/"
+              target="_blank"
+              variant="text"
+            >
+              LinkedIn
+            </Button>
+            <Button href="https://github.com/andywgarcia" target="_blank">
+              GitHub
+            </Button>
+            <Button onClick={onRequestResumeClick}>Resume</Button>
           </Box>
-          <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
-            href="/"
-            sx={{ fontSize: 24, height: 32 }}
-          >
-            {"Andy Garcia"}
-          </Link>
         </Toolbar>
       </AppBar>
       <Toolbar />
+      <ContactForm
+        isOpen={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+        onSubmit={onContactFormSubmit}
+      />
+      <Snackbar
+        open={isSnackbarOpen}
+        onClose={() => setIsSnackbarOpen(false)}
+        message={snackbarMessage}
+      />
     </Box>
   );
 }

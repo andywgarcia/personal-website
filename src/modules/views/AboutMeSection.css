@@ -35,7 +35,7 @@
 }
 
 @media (prefers-reduced-motion) {
-  .about-me-transitioned-content-hidden > * {
+  .about-me-transitioned-content-hidden {
     transition: none;
   }
 }
