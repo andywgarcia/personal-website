@@ -1,9 +1,16 @@
+import { useRef } from "react";
 import { Theme } from "@mui/material/styles";
 import { SxProps } from "@mui/system";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Typography from "../components/Typography";
+import TerminalIcon from "@mui/icons-material/Terminal";
+import GroupsIcon from "@mui/icons-material/Groups";
+import BusinessIcon from "@mui/icons-material/Business";
+import useOnScreen from "../useOnScreen";
+
+import "./AboutMeSection.css";
 
 const item: SxProps<Theme> = {
   display: "flex",
@@ -12,7 +19,17 @@ const item: SxProps<Theme> = {
   px: 5,
 };
 
-function ProductValues() {
+function AboutMeSection() {
+  const firstItemRef = useRef<HTMLDivElement>(null);
+  const { hasBeenIntersected: firstItemHasBeenIntersected } =
+    useOnScreen(firstItemRef);
+  const secondItemRef = useRef<HTMLDivElement>(null);
+  const { hasBeenIntersected: secondItemHasBeenIntersected } =
+    useOnScreen(secondItemRef);
+  const thirdItemRef = useRef<HTMLDivElement>(null);
+  const { hasBeenIntersected: thirdItemHasBeenIntersected } =
+    useOnScreen(thirdItemRef);
+
   return (
     <Box
       component="section"
@@ -26,14 +43,19 @@ function ProductValues() {
           sx={{ pointerEvents: "none", position: "absolute", top: -180 }}
         />
         <Grid container spacing={5}>
-          <Grid item xs={12} md={4}>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            className={`about-me-transitioned-content about-me-transitioned-content-hidden ${
+              firstItemHasBeenIntersected
+                ? "about-me-transitioned-content-visible"
+                : ""
+            }`}
+            ref={firstItemRef}
+          >
             <Box sx={item}>
-              <Box
-                component="img"
-                src="/static/themes/onepirate/productValues1.svg"
-                alt="suitcase"
-                sx={{ height: 55 }}
-              />
+              <TerminalIcon sx={{ height: 55, fontSize: "55px" }} />
               <Typography variant="h6" sx={{ my: 5 }}>
                 Favorite Technology
               </Typography>
@@ -47,14 +69,20 @@ function ProductValues() {
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            className={`about-me-transitioned-content about-me-transitioned-content-hidden ${
+              secondItemHasBeenIntersected
+                ? "about-me-transitioned-content-visible"
+                : ""
+            }`}
+            ref={secondItemRef}
+          >
             <Box sx={item}>
-              <Box
-                component="img"
-                src="/static/themes/onepirate/productValues2.svg"
-                alt="graph"
-                sx={{ height: 55 }}
-              />
+              <GroupsIcon sx={{ height: 55, fontSize: "55px" }} />
+
               <Typography variant="h6" sx={{ my: 5 }}>
                 Known For
               </Typography>
@@ -68,14 +96,19 @@ function ProductValues() {
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid
+            item
+            xs={12}
+            md={4}
+            className={`about-me-transitioned-content about-me-transitioned-content-hidden ${
+              thirdItemHasBeenIntersected
+                ? "about-me-transitioned-content-visible"
+                : ""
+            }`}
+            ref={thirdItemRef}
+          >
             <Box sx={item}>
-              <Box
-                component="img"
-                src="/static/themes/onepirate/productValues3.svg"
-                alt="clock"
-                sx={{ height: 55 }}
-              />
+              <BusinessIcon sx={{ height: 55, fontSize: "55px" }} />
               <Typography variant="h6" sx={{ my: 5 }}>
                 Past Clients
               </Typography>
@@ -95,4 +128,4 @@ function ProductValues() {
   );
 }
 
-export default ProductValues;
+export default AboutMeSection;

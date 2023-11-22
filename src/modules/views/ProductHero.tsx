@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Button from "../components/Button";
 import Typography from "../components/Typography";
 import ProductHeroLayout from "./ProductHeroLayout";
@@ -33,7 +33,7 @@ export default function ProductHero() {
   };
 
   const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(ref);
+  const { hasBeenIntersected } = useOnScreen(ref);
   return (
     <>
       <ProductHeroLayout
@@ -51,8 +51,8 @@ export default function ProductHero() {
         /> */}
         <Box
           ref={ref}
-          className={`animated-section animated-section-hidden ${
-            isVisible && "animated-section-visible"
+          className={`transitioned-section transitioned-section-hidden ${
+            hasBeenIntersected && "transitioned-section-visible"
           }`}
           display="flex"
           flexDirection="column"
@@ -63,7 +63,7 @@ export default function ProductHero() {
             align="center"
             variant="h2"
             marked="center"
-            className="animated-content"
+            className="transitioned-content"
           >
             Principal Software Engineer
           </Typography>
@@ -72,14 +72,14 @@ export default function ProductHero() {
             align="center"
             variant="h5"
             sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}
-            className="animated-content"
+            className="transitioned-content"
           >
             Strategic software engineer, driving innovation.
           </Typography>
           <Box
             className={`
-          animated-button-hidden
-          ${isVisible && "animated-button-visible"}`}
+          transitioned-button-hidden
+          ${hasBeenIntersected && "transitioned-button-visible"}`}
           >
             <Button
               color="secondary"
@@ -95,7 +95,7 @@ export default function ProductHero() {
             variant="body2"
             color="inherit"
             sx={{ mt: 2 }}
-            className="animated-content"
+            className="transitioned-content"
           >
             Proven leader achieving team success.
           </Typography>

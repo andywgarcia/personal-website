@@ -1,8 +1,8 @@
-.animated-section-hidden {
-  --animated-timing-factor: 0.75s;
+.transitioned-section-hidden {
+  --transitioned-timing-factor: 0.75s;
 }
 
-.animated-section-hidden > * {
+.transitioned-section-hidden > * {
   transform: translateY(100px);
   opacity: 0;
   transition-property: transform, opacity;
@@ -10,37 +10,37 @@
   filter: blur(5px);
 }
 
-.animated-content:nth-child(1) {
-  transition-delay: calc(var(--animated-timing-factor) * 1);
+.transitioned-content:nth-child(1) {
+  transition-delay: calc(var(--transitioned-timing-factor) * 1);
 }
-.animated-content:nth-child(2) {
-  transition-delay: calc(var(--animated-timing-factor) * 2);
+.transitioned-content:nth-child(2) {
+  transition-delay: calc(var(--transitioned-timing-factor) * 2);
 }
-.animated-content:nth-child(4) {
-  transition-delay: calc(var(--animated-timing-factor) * 3);
+.transitioned-content:nth-child(4) {
+  transition-delay: calc(var(--transitioned-timing-factor) * 3);
 }
 
-.animated-section-visible > * {
+.transitioned-section-visible > * {
   opacity: 1;
   transform: translateY(0);
 
   filter: blur(0);
 }
 
-.animated-button-hidden {
+.transitioned-button-hidden {
   opacity: 0;
   transition: opacity 0.5s ease-in 3.5s;
 }
 
-.animated-button-visible {
+.transitioned-button-visible {
   opacity: 1;
 }
 
 @media (prefers-reduced-motion) {
-  .animated-section-hidden > * {
+  .transitioned-section-hidden > * {
     transition: none;
   }
-  .animated-button-hidden {
+  .transitioned-button-hidden {
     transition: none;
   }
 }
