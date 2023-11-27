@@ -4,7 +4,7 @@ import "./ProductHero.css";
 import useOnScreen from "../useOnScreen";
 import { Box, Typography } from "@mui/material";
 
-const backgroundImage = "public/static/blue-wavy-background.jpg";
+const backgroundImage = "/static/blue-wavy-background.jpg";
 
 export default function ProductHero() {
   const ref = useRef<HTMLDivElement>(null);

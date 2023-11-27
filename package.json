@@ -8,7 +8,8 @@
     "build": "bunx --bun vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "bunx --bun vite preview",
-    "deploy": "bun run build && bunx serverless deploy && bunx serverless syncToS3"
+    "deploy": "bun run build && bunx serverless deploy && bunx serverless syncToS3 && bun run invalidate-distribution",
+    "invalidate-distribution": "aws cloudfront create-invalidation --distribution-id E39GRZ6ZQTWUTN --paths \"/index.html\""
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
