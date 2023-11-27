@@ -63,9 +63,10 @@ resources:
           HttpVersion: http2
           Aliases:
             - andys-codex.com
+            - www.andys-codex.com
               ## The certificate to use when viewers use HTTPS to request objects.
           ViewerCertificate:
-            AcmCertificateArn: arn:aws:acm:us-east-1:228732469808:certificate/b99abca4-fc01-49c0-8626-4461579f3b4a
+            AcmCertificateArn: arn:aws:acm:us-east-1:228732469808:certificate/88cdedea-c896-4e7d-88a5-5da4dcfc5d78
             MinimumProtocolVersion: TLSv1.2_2021
             SslSupportMethod: sni-only
           DefaultRootObject: index.html
