@@ -3,7 +3,7 @@ import Link from "@mui/material/Link";
 import AppBar from "../components/AppBar";
 import Toolbar from "../components/Toolbar";
 import "./AppAppBar.css";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ContactForm from "./ContactForm";
 import Snackbar from "../components/Snackbar";
 import Button from "@mui/material/Button";
@@ -34,8 +34,18 @@ function AppAppBar() {
     e.stopPropagation();
     setIsDialogOpen(true);
   };
+
+  const appBarRef = useRef<HTMLDivElement>();
+  useEffect(() => {
+    if (appBarRef?.current) {
+      document.documentElement.style.setProperty(
+        "--scroll-padding",
+        `${appBarRef.current.offsetHeight}px`,
+      );
+    }
+  }, [appBarRef?.current]);
   return (
-    <Box>
+    <Box ref={appBarRef}>
       <AppBar position="fixed" sx={{ backgroundColor: "#FFFFFF" }}>
         <Toolbar
           sx={{ justifyContent: "space-between", gap: 2, alignItems: "top" }}

@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import ButtonBase from "@mui/material/ButtonBase";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 const ImageBackdrop = styled("div")(({ theme }) => ({
   position: "absolute",
@@ -123,11 +124,29 @@ export default function RecentWork() {
     }
   };
   return (
-    <Container component="section" sx={{ mt: 8, mb: 4 }}>
-      <Typography variant="h4" align="center" component="h2">
-        Featured Projects
-      </Typography>
-      <Box sx={{ mt: 8, display: "flex", flexWrap: "wrap" }}>
+    <Container
+      component="section"
+      sx={{ pt: 8, pb: 4, display: "grid", gap: 8 }}
+      id="featured-projects"
+    >
+      <Button
+        component="a"
+        href="#featured-projects"
+        disableRipple
+        sx={{
+          "&:hover": { backgroundColor: "unset" },
+        }}
+      >
+        <Typography variant="h4" align="center" component="h2">
+          Featured Projects
+        </Typography>
+      </Button>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+        }}
+      >
         {images.map((image) => (
           <ImageIconButton
             key={image.title}

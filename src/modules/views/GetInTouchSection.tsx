@@ -89,7 +89,11 @@ function GetInTouchSection() {
     setIsSnackbarOpen(false);
   };
   return (
-    <Container component="section" sx={{ mt: 10, mb: 5, display: "flex" }}>
+    <Container
+      component="section"
+      sx={{ pt: 10, pb: 5, display: "flex" }}
+      id="contact"
+    >
       <Grid container>
         <Grid item xs={12} md={6} sx={{ zIndex: 1 }}>
           <Box
