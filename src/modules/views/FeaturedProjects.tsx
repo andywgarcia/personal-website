@@ -77,7 +77,7 @@ const images: Image[] = [
       "https://github.com/andywgarcia/create-trello-item-from-page-extension",
   },
   {
-    url: "public/static/wisedoc.png",
+    url: "/static/wisedoc.png",
     title: "Wisedoc",
     width: "40%",
     linkUrl: "https://wisedoc.net/",
