@@ -1,9 +1,12 @@
 import { useRef } from "react";
 import ProductHeroLayout from "./ProductHeroLayout";
 import useOnScreen from "../../hooks/useOnScreen";
-import { Box, Typography } from "@mui/material";
-
+import { Box, Typography, IconButton, Link } from "@mui/material";
+import EmailIcon from "@mui/icons-material/Email";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import "./ProductHero.css";
+
 const backgroundImage = "/static/blue-wavy-background.jpg";
 
 export default function ProductHero() {
@@ -65,6 +68,43 @@ export default function ProductHero() {
             >
               driving innovation and achieving team success
             </Typography>
+          </Box>
+          <Box
+            className="transitioned-content"
+            display="flex"
+            gap={1}
+            alignItems="center"
+          >
+            <IconButton
+              aria-label="GitHub"
+              component={Link}
+              href="https://github.com/andywgarcia"
+              target="_blank"
+              sx={(theme) => ({ color: theme.palette.common.white })}
+              size="large"
+            >
+              <GitHubIcon />
+            </IconButton>
+            <IconButton
+              aria-label="LinkedIn"
+              component={Link}
+              href="https://www.linkedin.com/in/andywgarcia/"
+              target="_blank"
+              sx={(theme) => ({ color: theme.palette.common.white })}
+              size="large"
+            >
+              <LinkedInIcon />
+            </IconButton>
+
+            <IconButton
+              aria-label="Contact"
+              sx={(theme) => ({ color: theme.palette.common.white })}
+              size="large"
+              component="a"
+              href="#contact"
+            >
+              <EmailIcon />
+            </IconButton>
           </Box>
         </Box>
       </ProductHeroLayout>

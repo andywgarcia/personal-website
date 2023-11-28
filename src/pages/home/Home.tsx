@@ -1,5 +1,5 @@
 import * as React from "react";
-import FeaturedProjects from "./FeaturedProjects";
+import FeaturedProjects from "./featured-projects-section/FeaturedProjects";
 import AppFooter from "../../modules/views/AppFooter";
 import ProductHero from "./ProductHero";
 import GetInTouchSection from "./GetInTouchSection";
@@ -13,7 +13,7 @@ function Home() {
       {/* <EducationSection /> */}
       <GetInTouchSection />
       {/* <ProductSmokingHero /> */}
-      <AppFooter />
+      {/* <AppFooter /> */}
     </React.Fragment>
   );
 }

@@ -66,7 +66,7 @@ function AppAppBar() {
             </Link>
           </Box>
           <Box display="flex" gap={2} alignItems="center">
-            <Button
+            {/* <Button
               href="https://www.linkedin.com/in/andywgarcia/"
               target="_blank"
               variant="text"
@@ -75,9 +75,15 @@ function AppAppBar() {
             </Button>
             <Button href="https://github.com/andywgarcia" target="_blank">
               GitHub
+            </Button> */}
+            <Button component="a" href="/#featured-projects">
+              Projects
             </Button>
             <Button component="a" onClick={onRequestResumeClick}>
               Resume
+            </Button>
+            <Button component="a" href="/#contact">
+              Contact
             </Button>
           </Box>
         </Toolbar>

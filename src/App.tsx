@@ -11,6 +11,8 @@ import Home from "./pages/home/Home";
 import AppAppBar from "./modules/views/AppAppBar";
 import withRoot from "./hooks/withRoot";
 import NotFoundPage from "./pages/not-found/NotFoundPage";
+import projects from "./helpers/projects";
+import Project from "./pages/project/Project";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +32,14 @@ const router = createBrowserRouter(
       />
       <Route path="education" element={<div>Education</div>} />
       <Route path="*" element={<NotFoundPage />} />
+      {projects.map((project) => (
+        <Route
+          path={`projects/${project.title
+            .toLocaleLowerCase()
+            .replace(" ", "-")}`}
+          element={<Project {...project} />}
+        />
+      ))}
     </Route>,
   ),
 );

@@ -97,13 +97,13 @@ function GetInTouchSection() {
       <Grid container>
         <Grid item xs={12} md={6} sx={{ zIndex: 1 }}>
           <Box
-            sx={{
+            sx={(theme) => ({
               display: "flex",
               justifyContent: "center",
-              bgcolor: "warning.main",
+              bgcolor: theme.palette.grey[300],
               py: 8,
               px: 3,
-            }}
+            })}
           >
             <Box
               component="form"
