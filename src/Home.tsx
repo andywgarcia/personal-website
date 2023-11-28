@@ -1,20 +1,14 @@
 import * as React from "react";
-import RecentWork from "./modules/views/RecentWork";
-import ProductSmokingHero from "./modules/views/ProductSmokingHero";
+import FeaturedProjects from "./modules/views/FeaturedProjects";
 import AppFooter from "./modules/views/AppFooter";
 import ProductHero from "./modules/views/ProductHero";
-import AboutMeSection from "./modules/views/AboutMeSection";
-import EducationSection from "./modules/views/EducationSection";
 import GetInTouchSection from "./modules/views/GetInTouchSection";
-import AppAppBar from "./modules/views/AppAppBar";
-import withRoot from "./modules/withRoot";
 
 function Index() {
   return (
     <React.Fragment>
-      <AppAppBar />
       <ProductHero />
-      <RecentWork />
+      <FeaturedProjects />
       {/* <AboutMeSection /> */}
       {/* <EducationSection /> */}
       <GetInTouchSection />
@@ -24,4 +18,4 @@ function Index() {
   );
 }
 
-export default withRoot(Index);
+export default Index;

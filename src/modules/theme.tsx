@@ -1,5 +1,16 @@
 import { createTheme } from "@mui/material/styles";
 import { green, grey, red } from "@mui/material/colors";
+import { Link, LinkProps } from "react-router-dom";
+import { forwardRef } from "react";
+
+const LinkBehavior = forwardRef<
+  HTMLAnchorElement,
+  Omit<LinkProps, "to"> & { href: LinkProps["to"] }
+>((props, ref) => {
+  const { href, ...other } = props;
+  // Map href (Material UI) -> to (react-router)
+  return <Link ref={ref} to={href} {...other} />;
+});
 
 const rawTheme = createTheme({
   palette: {
@@ -28,7 +39,19 @@ const rawTheme = createTheme({
   typography: {
     fontFamily: "Poppins, sans-serif",
     fontSize: 14,
-    fontWeightRegular: 500
+    fontWeightRegular: 500,
+  },
+  components: {
+    MuiLink: {
+      defaultProps: {
+        component: LinkBehavior,
+      },
+    },
+    MuiButtonBase: {
+      defaultProps: {
+        LinkComponent: LinkBehavior,
+      },
+    },
   },
 });
 

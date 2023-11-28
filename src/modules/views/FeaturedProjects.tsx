@@ -4,6 +4,8 @@ import ButtonBase from "@mui/material/ButtonBase";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 
 const ImageBackdrop = styled("div")(({ theme }) => ({
   position: "absolute",
@@ -117,17 +119,32 @@ const images: Image[] = [
   },
 ];
 
-export default function RecentWork() {
+export default function FeaturedProjects() {
   const onButtonClick = (image: Image) => {
     if (image.linkUrl) {
       window.open(image.linkUrl, "_blank");
     }
   };
+
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { hash } = useLocation();
+  useEffect(() => {
+    console.log(
+      "Hash",
+      hash,
+      hash.includes("featured-projects"),
+      sectionRef?.current,
+    );
+    if (sectionRef?.current && hash.includes("featured-projects")) {
+      setTimeout(() => sectionRef?.current?.scrollIntoView(), 700);
+    }
+  }, [hash, sectionRef?.current]);
   return (
     <Container
       component="section"
       sx={{ pt: 8, pb: 4, display: "grid", gap: 8 }}
       id="featured-projects"
+      ref={sectionRef}
     >
       <Button
         component="a"

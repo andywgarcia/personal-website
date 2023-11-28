@@ -1,8 +1,42 @@
+import {
+  Navigate,
+  Outlet,
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
 import "./App.css";
 import Home from "./Home";
+import AppAppBar from "./modules/views/AppAppBar";
+import withRoot from "./modules/withRoot";
+import NotFoundPage from "./modules/views/NotFoundPage";
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route
+        path="/"
+        element={
+          <>
+            <AppAppBar />
+            <Outlet />
+          </>
+        }
+      >
+        <Route index element={<Home />} />
+        <Route
+          path="projects"
+          element={<Navigate to="/#featured-projects" replace />}
+        />
+        <Route path="education" element={<div>Education</div>} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </>,
+  ),
+);
 function App() {
-  return <Home />;
+  return <RouterProvider router={router} />;
 }
 
-export default App;
+export default withRoot(App);

@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import ContactForm from "./ContactForm";
 import Snackbar from "../components/Snackbar";
 import Button from "@mui/material/Button";
+import { useLocation } from "react-router-dom";
 
 const SNACKBAR_SUCCESS_MESSAGE =
   "My email will be automatically emailed to you very soon. Thank you!";
@@ -44,6 +45,8 @@ function AppAppBar() {
       );
     }
   }, [appBarRef?.current]);
+
+  const { pathname } = useLocation();
   return (
     <Box ref={appBarRef}>
       <AppBar position="fixed" sx={{ backgroundColor: "#FFFFFF" }}>
@@ -54,8 +57,10 @@ function AppAppBar() {
             <Link
               variant="h6"
               underline="none"
-              href="/"
+              href={pathname === "/" ? "#" : undefined}
               sx={{ fontSize: 24, height: 32 }}
+              // @ts-ignore
+              component={pathname === "/" ? "a" : undefined}
             >
               {"Andy Garcia"}
             </Link>
