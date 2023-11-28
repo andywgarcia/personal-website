@@ -1,10 +1,10 @@
 import * as React from "react";
-import FeaturedProjects from "./modules/views/FeaturedProjects";
-import AppFooter from "./modules/views/AppFooter";
-import ProductHero from "./modules/views/ProductHero";
-import GetInTouchSection from "./modules/views/GetInTouchSection";
+import FeaturedProjects from "./FeaturedProjects";
+import AppFooter from "../../modules/views/AppFooter";
+import ProductHero from "./ProductHero";
+import GetInTouchSection from "./GetInTouchSection";
 
-function Index() {
+function Home() {
   return (
     <React.Fragment>
       <ProductHero />
@@ -18,4 +18,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Home;

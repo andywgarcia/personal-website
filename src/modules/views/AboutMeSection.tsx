@@ -7,7 +7,7 @@ import Container from "@mui/material/Container";
 import TerminalIcon from "@mui/icons-material/Terminal";
 import GroupsIcon from "@mui/icons-material/Groups";
 import BusinessIcon from "@mui/icons-material/Business";
-import useOnScreen from "../useOnScreen";
+import useOnScreen from "../../hooks/useOnScreen";
 
 import "./AboutMeSection.css";
 import Typography from "@mui/material/Typography";

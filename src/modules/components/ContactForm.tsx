@@ -11,7 +11,7 @@ import {
 import { MuiTelInput, matchIsValidTel } from "mui-tel-input";
 import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import { validateEmail } from "./validateEmail";
+import { validateEmail } from "../../helpers/validateEmail";
 
 export interface ContactFormProps {
   isOpen: boolean;

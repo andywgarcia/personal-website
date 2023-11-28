@@ -4,7 +4,7 @@ import AppBar from "../components/AppBar";
 import Toolbar from "../components/Toolbar";
 import "./AppAppBar.css";
 import { useEffect, useRef, useState } from "react";
-import ContactForm from "./ContactForm";
+import ContactForm from "../components/ContactForm";
 import Snackbar from "../components/Snackbar";
 import Button from "@mui/material/Button";
 import { useLocation } from "react-router-dom";

@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import ProductHeroLayout from "./ProductHeroLayout";
-import "./ProductHero.css";
-import useOnScreen from "../useOnScreen";
+import useOnScreen from "../../hooks/useOnScreen";
 import { Box, Typography } from "@mui/material";
 
+import "./ProductHero.css";
 const backgroundImage = "/static/blue-wavy-background.jpg";
 
 export default function ProductHero() {

@@ -2,12 +2,12 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
-import TextField from "../components/TextField";
-import Snackbar from "../components/Snackbar";
-import ResumeButton from "../components/ResumeButton";
+import TextField from "../../modules/components/TextField";
+import Snackbar from "../../modules/components/Snackbar";
+import ResumeButton from "../../modules/components/ResumeButton";
 import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import { validateEmail } from "./validateEmail";
+import { validateEmail } from "../../helpers/validateEmail";
 import Typography from "@mui/material/Typography";
 
 const snackbarSuccessMessage =
