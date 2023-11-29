@@ -4,26 +4,26 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import projects, { Project } from "../../../helpers/projects";
-import { ImageIconButton } from "./ImageIconButton";
-import { ImageBackdrop } from "./ImageBackdrop";
-import { ProjectImageIconContainer } from "./ProjectImageIconContainer";
+import { Project } from "../../../helpers/projects";
 
 const featuredProjects = [
   {
     title: "myPrescryptive",
     description:
       "Allows patients to view the prices of their prescriptions at pharmaacies near them.",
+    imageUrl: "/static/myprescryptive.png",
   },
   {
     title: "Wisedoc",
     description:
       "Automagically formats your documents into the format you need.",
+    imageUrl: "/static/wisedoc.png",
   },
   {
     title: "Marshmallow",
     description:
       "Calculates the true cost (opportunity cost) of your desires while you are in debt.",
+    imageUrl: "/static/marshmallow.png",
   },
 ];
 
@@ -93,57 +93,11 @@ export default function FeaturedProjects() {
               <Typography>{project.description}</Typography>
             </ProjectTextContainer>
             <Box flex={1}>
-              <img src="/static/marshmallow.jpg" width="100% " />
+              <img src={project.imageUrl} width="100% " />
             </Box>
           </Box>
         ))}
       </FeaturedProjectGrid>
-      {/* <ProjectImageIconContainer>
-        {projects.map((project) => (
-          <ImageIconButton
-            key={project.title}
-            onClick={() => onButtonClick(project)}
-          >
-            <Box
-              sx={{
-                position: "absolute",
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-                backgroundSize: "cover",
-                backgroundPosition: "center 40%",
-                backgroundImage: project.url ? `url(${project.url})` : "unset",
-              }}
-            />
-            <ImageBackdrop className="imageBackdrop" />
-            <Box
-              sx={{
-                position: "absolute",
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "common.white",
-              }}
-            >
-              <Typography
-                component="h3"
-                variant="h6"
-                color="inherit"
-                className="imageTitle"
-                margin={2}
-              >
-                {project.title}
-                <div className="imageMarked" />
-              </Typography>
-            </Box>
-          </ImageIconButton>
-        ))}
-      </ProjectImageIconContainer> */}
     </Container>
   );
 }
