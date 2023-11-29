@@ -19,7 +19,7 @@ export interface ContactFormProps {
   onSubmit?: (didError: boolean) => void;
 }
 
-export default function ContactForm(props: ContactFormProps) {
+export default function RequestResumeDialog(props: ContactFormProps) {
   const { onClose, isOpen, onSubmit = () => {} } = props;
 
   const [fullName, setFullName] = useState<string | null>(null);
@@ -44,7 +44,7 @@ export default function ContactForm(props: ContactFormProps) {
   const onSend = async () => {
     try {
       const response = await fetch(
-        "https://xfw1n5qcrb.execute-api.us-east-1.amazonaws.com/request-resume",
+        [import.meta.env.VITE_API_ENDPOINT, "request-resume"].join("/"),
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -87,7 +87,7 @@ export default function ContactForm(props: ContactFormProps) {
         <Box display="grid" my={2} gap={2} component="form">
           <TextField
             label="Full Name"
-            placeholder="Please provide your first and last name"
+            placeholder="First Last"
             variant="filled"
             fullWidth
             required
@@ -98,7 +98,7 @@ export default function ContactForm(props: ContactFormProps) {
           />
           <TextField
             label="Email"
-            placeholder="Please provide your email"
+            placeholder="example@company.com"
             variant="filled"
             fullWidth
             required
@@ -110,7 +110,7 @@ export default function ContactForm(props: ContactFormProps) {
           />
           <MuiTelInput
             label="Phone Number"
-            placeholder="Please provide your phone number"
+            placeholder="000 000 0000"
             variant="filled"
             fullWidth
             defaultCountry="US"
@@ -133,7 +133,7 @@ export default function ContactForm(props: ContactFormProps) {
           />
           <TextField
             label="Company"
-            placeholder="Please enter the company you are inquiring from"
+            placeholder="Example Company Inc"
             variant="filled"
             fullWidth
             value={company || ""}
@@ -141,7 +141,7 @@ export default function ContactForm(props: ContactFormProps) {
           />
           <TextField
             label="Additional Message"
-            placeholder="Add any message you would like for me to read"
+            placeholder="Your message here..."
             variant="filled"
             fullWidth
             multiline

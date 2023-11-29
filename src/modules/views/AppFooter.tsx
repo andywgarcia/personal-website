@@ -45,7 +45,7 @@ export default function AppFooter(props: TypographyProps) {
       console.log(email, message, recaptchaResponse);
       try {
         const response = await fetch(
-          "https://xfw1n5qcrb.execute-api.us-east-1.amazonaws.com/contact",
+          [import.meta.env.VITE_API_ENDPOINT, "contact"].join("/"),
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

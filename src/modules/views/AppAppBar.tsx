@@ -4,7 +4,7 @@ import AppBar from "../components/AppBar";
 import Toolbar from "../components/Toolbar";
 import "./AppAppBar.css";
 import { useEffect, useRef, useState } from "react";
-import ContactForm from "../components/ContactForm";
+import RequestResumeDialog from "../components/RequestResumeDialog";
 import Snackbar from "../components/Snackbar";
 import Button from "@mui/material/Button";
 import { useLocation } from "react-router-dom";
@@ -66,30 +66,20 @@ function AppAppBar() {
             </Link>
           </Box>
           <Box display="flex" gap={2} alignItems="center">
-            {/* <Button
-              href="https://www.linkedin.com/in/andywgarcia/"
-              target="_blank"
-              variant="text"
-            >
-              LinkedIn
-            </Button>
-            <Button href="https://github.com/andywgarcia" target="_blank">
-              GitHub
-            </Button> */}
             <Button component="a" href="/#featured-projects">
               Projects
             </Button>
-            <Button component="a" onClick={onRequestResumeClick}>
-              Resume
-            </Button>
             <Button component="a" href="/#contact">
               Contact
+            </Button>
+            <Button component="a" onClick={onRequestResumeClick}>
+              Resume
             </Button>
           </Box>
         </Toolbar>
       </AppBar>
       <Toolbar />
-      <ContactForm
+      <RequestResumeDialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
         onSubmit={onContactFormSubmit}
