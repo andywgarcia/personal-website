@@ -1,7 +1,6 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
+import Box, { BoxProps } from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Container from "@mui/material/Container";
 import TextField from "../../modules/components/TextField";
 import Snackbar from "../../modules/components/Snackbar";
 import ResumeButton from "../../modules/components/ResumeButton";
@@ -9,6 +8,7 @@ import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { validateEmail } from "../../helpers/validateEmail";
 import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material";
 
 const snackbarSuccessMessage =
   "Thank you for reaching out. I'll be in contact with you shortly!";
@@ -16,7 +16,9 @@ const snackBarRecaptchaError =
   "Please verify you are not a robot by completing the recaptcha.";
 const snackbarErrorMessage = "Something went wrong. Please try again.";
 
-function GetInTouchSection() {
+const backgroundImage = "/static/blue-wavy-background.jpg";
+
+function GetInTouchSection(props: BoxProps) {
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState(
     snackbarSuccessMessage,
@@ -89,11 +91,24 @@ function GetInTouchSection() {
     setIsSnackbarOpen(false);
   };
   return (
-    <Container
+    <Box
       component="section"
-      sx={{ pt: 10, pb: 5, display: "flex" }}
+      sx={{
+        pt: 10,
+        pb: 5,
+        position: "relative",
+      }}
       id="contact"
+      {...props}
     >
+      <Background
+        sx={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundColor: "#19268c", // Average color of the background image.
+          backgroundPosition: "center",
+        }}
+        className="full-width"
+      />
       <Grid container>
         <Grid item xs={12} md={6} sx={{ zIndex: 1 }}>
           <Box
@@ -104,58 +119,7 @@ function GetInTouchSection() {
               py: 8,
               px: 3,
             })}
-          >
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              sx={{ maxWidth: 400 }}
-              display="grid"
-              gap={2}
-            >
-              <Typography variant="h2" component="h2">
-                Get in touch
-              </Typography>
-              <Typography variant="h5">
-                Introduce yourself, request my resume, or just say hi. No matter
-                what, let's connect!
-              </Typography>
-              <TextField
-                value={email}
-                onChange={onEmailChange}
-                noBorder
-                placeholder="Your email"
-                variant="standard"
-                fullWidth
-                helperText={emailErrorMessage}
-                required
-                error={!!emailErrorMessage}
-                type="email"
-              />
-              <TextField
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                noBorder
-                placeholder="Message"
-                variant="standard"
-                fullWidth
-                multiline
-                rows={4}
-              />
-              <ReCAPTCHA
-                sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                onChange={(token) => setRecaptchaResponse(token)}
-                ref={recaptchaRef}
-              ></ReCAPTCHA>
-              <ResumeButton
-                type="submit"
-                color="primary"
-                variant="contained"
-                fullWidth
-              >
-                Connect
-              </ResumeButton>
-            </Box>
-          </Box>
+          ></Box>
         </Grid>
         <Grid
           item
@@ -163,7 +127,7 @@ function GetInTouchSection() {
           md={6}
           sx={{ display: { md: "block", xs: "none" }, position: "relative" }}
         >
-          <Box
+          {/* <Box
             sx={{
               position: "absolute",
               top: -67,
@@ -174,7 +138,7 @@ function GetInTouchSection() {
               background:
                 "url(/static/themes/onepirate/productCTAImageDots.png)",
             }}
-          />
+          /> */}
           <Box
             component="img"
             src="/static/andy-headshot.jpeg"
@@ -196,8 +160,19 @@ function GetInTouchSection() {
         onClose={handleClose}
         message={snackbarMessage}
       />
-    </Container>
+    </Box>
   );
 }
 
 export default GetInTouchSection;
+
+const Background = styled(Box)({
+  position: "absolute",
+  left: 0,
+  right: 0,
+  top: 0,
+  bottom: 0,
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  zIndex: -2,
+});

@@ -1,10 +1,9 @@
-import * as React from "react";
 import { Theme, styled } from "@mui/material/styles";
 import { SxProps } from "@mui/system";
 import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
+import Box, { BoxProps } from "@mui/material/Box";
 
-const ProductHeroLayoutRoot = styled("section")(({ theme }) => ({
+const ProductHeroLayoutRoot = styled(Box)(({ theme }) => ({
   color: theme.palette.common.white,
   position: "relative",
   display: "flex",
@@ -32,12 +31,12 @@ interface ProductHeroLayoutProps {
 }
 
 export default function ProductHeroLayout(
-  props: React.HTMLAttributes<HTMLDivElement> & ProductHeroLayoutProps,
+  props: ProductHeroLayoutProps & BoxProps,
 ) {
-  const { sxBackground, children } = props;
+  const { sxBackground, children, ...rest } = props;
 
   return (
-    <ProductHeroLayoutRoot>
+    <ProductHeroLayoutRoot component="section" {...rest}>
       <Container
         sx={{
           mt: 3,

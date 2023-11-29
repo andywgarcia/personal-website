@@ -13,6 +13,8 @@ import withRoot from "./hooks/withRoot";
 import NotFoundPage from "./pages/not-found/NotFoundPage";
 import projects from "./helpers/projects";
 import Project from "./pages/project/Project";
+import { Box } from "@mui/material";
+import AppFooter from "./modules/views/AppFooter";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,7 +23,10 @@ const router = createBrowserRouter(
       element={
         <>
           <AppAppBar />
-          <Outlet />
+          <Box id="page-content" className="content-grid" component="main">
+            <Outlet />
+          </Box>
+          <AppFooter className="full-width" />
         </>
       }
     >

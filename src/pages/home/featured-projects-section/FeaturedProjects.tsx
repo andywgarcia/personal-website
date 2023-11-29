@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -8,6 +8,42 @@ import projects, { Project } from "../../../helpers/projects";
 import { ImageIconButton } from "./ImageIconButton";
 import { ImageBackdrop } from "./ImageBackdrop";
 import { ProjectImageIconContainer } from "./ProjectImageIconContainer";
+
+const featuredProjects = [
+  {
+    title: "myPrescryptive",
+    description:
+      "Allows patients to view the prices of their prescriptions at pharmaacies near them.",
+  },
+  {
+    title: "Wisedoc",
+    description:
+      "Automagically formats your documents into the format you need.",
+  },
+  {
+    title: "Marshmallow",
+    description:
+      "Calculates the true cost (opportunity cost) of your desires while you are in debt.",
+  },
+];
+
+const FeaturedProjectGrid = styled(Box)(({ theme }) => ({
+  "& > div": { display: "flex", gap: theme.spacing(2) },
+  "& > div:nth-child(2n-1)": {
+    flexDirection: "row",
+  },
+  "& > div:nth-child(2n)": {
+    flexDirection: "row-reverse",
+  },
+}));
+
+const ProjectTextContainer = styled(Box)(({ theme }) => ({
+  flex: 2,
+  display: "grid",
+  gap: theme.spacing(2),
+  alignContent: "center",
+  justifyContent: "center",
+}));
 
 export default function FeaturedProjects() {
   const navigate = useNavigate();
@@ -47,7 +83,22 @@ export default function FeaturedProjects() {
           Featured Projects
         </Typography>
       </Button>
-      <ProjectImageIconContainer>
+      <FeaturedProjectGrid display="grid" gap={2}>
+        {featuredProjects.map((project) => (
+          <Box>
+            <ProjectTextContainer>
+              <Typography component="h3" variant="h5">
+                {project.title}
+              </Typography>
+              <Typography>{project.description}</Typography>
+            </ProjectTextContainer>
+            <Box flex={1}>
+              <img src="/static/marshmallow.jpg" width="100% " />
+            </Box>
+          </Box>
+        ))}
+      </FeaturedProjectGrid>
+      {/* <ProjectImageIconContainer>
         {projects.map((project) => (
           <ImageIconButton
             key={project.title}
@@ -92,7 +143,7 @@ export default function FeaturedProjects() {
             </Box>
           </ImageIconButton>
         ))}
-      </ProjectImageIconContainer>
+      </ProjectImageIconContainer> */}
     </Container>
   );
 }

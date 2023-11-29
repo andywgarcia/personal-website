@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import ProductHeroLayout from "./ProductHeroLayout";
 import useOnScreen from "../../hooks/useOnScreen";
-import { Box, Typography, IconButton, Link } from "@mui/material";
+import { Box, Typography, IconButton, Link, BoxProps } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -9,7 +9,7 @@ import "./ProductHero.css";
 
 const backgroundImage = "/static/blue-wavy-background.jpg";
 
-export default function ProductHero() {
+export default function ProductHero(props: BoxProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { hasBeenIntersected } = useOnScreen(ref);
   return (
@@ -20,6 +20,7 @@ export default function ProductHero() {
           backgroundColor: "#19268c", // Average color of the background image.
           backgroundPosition: "center",
         }}
+        {...props}
       >
         {/* Increase the network loading priority of the background image. */}
         <img

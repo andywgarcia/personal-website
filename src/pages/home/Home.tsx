@@ -7,13 +7,12 @@ import GetInTouchSection from "./GetInTouchSection";
 function Home() {
   return (
     <React.Fragment>
-      <ProductHero />
+      <ProductHero className="full-width" />
       <FeaturedProjects />
       {/* <AboutMeSection /> */}
       {/* <EducationSection /> */}
-      <GetInTouchSection />
+      {/* <GetInTouchSection className="full-width content-grid" /> */}
       {/* <ProductSmokingHero /> */}
-      {/* <AppFooter /> */}
     </React.Fragment>
   );
 }
