@@ -86,68 +86,70 @@ export default function AppFooter(props: TypographyProps) {
   return (
     <Typography
       component="footer"
-      sx={{ display: "flex", bgcolor: "lightgray" }}
+      sx={(theme) => ({ bgcolor: theme.palette.grey[300] })}
+      id="contact"
       {...props}
     >
-      <Container sx={{ my: 8, display: "flex", flexWrap: "wrap", gap: 4 }}>
-        <Box
-          component="img"
-          src="/static/andy-headshot.jpeg"
-          alt="Andy Garcia"
-          maxHeight="400px"
-          sx={{ display: { xs: "none", md: "block" } }}
-        />
-        <Box
-          component="form"
-          onSubmit={handleSubmit}
-          display="grid"
-          gap={2}
-          flex={1}
-          id="contact"
-        >
-          <Typography variant="h3" component="h2">
-            Get in touch
-          </Typography>
-          <Typography>
-            Introduce yourself or just say hi. Let's connect!
-          </Typography>
-          <TextField
-            value={email}
-            onChange={onEmailChange}
-            noBorder
-            placeholder="example@email.com"
-            variant="standard"
-            fullWidth
-            helperText={emailErrorMessage}
-            required
-            error={!!emailErrorMessage}
-            type="email"
+      <Box className="breakout">
+        <Box sx={{ my: 8, display: "flex", flexWrap: "wrap", gap: 4 }}>
+          <Box
+            component="img"
+            src="/static/andy-headshot.jpeg"
+            alt="Andy Garcia"
+            maxHeight="465px"
+            sx={{ display: { xs: "none", md: "block" } }}
           />
-          <TextField
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            noBorder
-            placeholder="Type your message here..."
-            variant="standard"
-            fullWidth
-            multiline
-            rows={4}
-          />
-          <ReCAPTCHA
-            sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-            onChange={(token) => setRecaptchaResponse(token)}
-            ref={recaptchaRef}
-          ></ReCAPTCHA>
-          <ResumeButton
-            type="submit"
-            color="primary"
-            variant="contained"
-            fullWidth
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            display="grid"
+            gap={2}
+            flex={1}
           >
-            Connect
-          </ResumeButton>
+            <Typography variant="h3" component="h2">
+              Get in touch
+            </Typography>
+            <Typography>
+              Introduce yourself or just say hi. Let's connect!
+            </Typography>
+            <TextField
+              value={email}
+              onChange={onEmailChange}
+              noBorder
+              placeholder="example@email.com"
+              variant="standard"
+              fullWidth
+              helperText={emailErrorMessage}
+              required
+              error={!!emailErrorMessage}
+              type="email"
+            />
+            <TextField
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              noBorder
+              placeholder="Type your message here..."
+              variant="standard"
+              fullWidth
+              multiline
+              rows={4}
+            />
+            <ReCAPTCHA
+              sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+              onChange={(token) => setRecaptchaResponse(token)}
+              ref={recaptchaRef}
+            ></ReCAPTCHA>
+            <ResumeButton
+              type="submit"
+              color="primary"
+              variant="contained"
+              fullWidth
+            >
+              Connect
+            </ResumeButton>
+          </Box>
         </Box>
-      </Container>
+      </Box>
       <Snackbar
         open={isSnackbarOpen}
         onClose={handleClose}

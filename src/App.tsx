@@ -26,7 +26,7 @@ const router = createBrowserRouter(
           <Box id="page-content" className="content-grid" component="main">
             <Outlet />
           </Box>
-          <AppFooter className="full-width" />
+          <AppFooter className="content-grid" />
         </>
       }
     >
