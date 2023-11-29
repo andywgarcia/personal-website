@@ -1,5 +1,4 @@
 import { Box, Snackbar } from "@mui/material";
-import Container from "@mui/material/Container";
 import Typography, { TypographyProps } from "@mui/material/Typography";
 import ReCAPTCHA from "react-google-recaptcha";
 import ResumeButton from "../components/ResumeButton";
