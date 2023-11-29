@@ -85,7 +85,7 @@ export default function FeaturedProjects() {
       </Button>
       <FeaturedProjectGrid display="grid" gap={2}>
         {featuredProjects.map((project) => (
-          <Box>
+          <Box key={project.title}>
             <ProjectTextContainer>
               <Typography component="h3" variant="h5">
                 {project.title}

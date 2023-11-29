@@ -23,7 +23,7 @@ export default function AppFooter(props: TypographyProps) {
     recaptchaRef?.current?.reset();
   };
 
-  const [email, setEmail] = useState<string | null>(null);
+  const [email, setEmail] = useState<string>("");
   const onEmailChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setEmailErrorMessage(undefined);
     setEmail(e.target.value);

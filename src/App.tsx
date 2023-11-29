@@ -39,6 +39,7 @@ const router = createBrowserRouter(
       <Route path="*" element={<NotFoundPage />} />
       {projects.map((project) => (
         <Route
+          key={project.title}
           path={`projects/${project.title
             .toLocaleLowerCase()
             .replace(" ", "-")}`}
