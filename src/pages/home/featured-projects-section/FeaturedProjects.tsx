@@ -3,10 +3,22 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useEffect, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Project } from "../../../helpers/projects";
+import { useLocation } from "react-router-dom";
 
 const featuredProjects = [
+  {
+    title: "Apollo GraphQL Summit 2024 Speaker",
+    description:
+      "Designing for Durability: Ticketmaster's 3-step Guide To Timeless Schemas",
+    imageUrl: "/static/andy-garcia-summit.jpg",
+    imageLink:
+      "https://www.apollographql.com/events/designing-for-durability-ticketmaster-s-3-step-guide-to-timeless-schemas",
+  },
+  {
+    title: "Ticketmaster",
+    description: "Allows fans to purchase tickets to events.",
+    imageUrl: "/static/ticketmaster-home.png",
+  },
   {
     title: "myPrescryptive",
     description:
@@ -46,17 +58,6 @@ const ProjectTextContainer = styled(Box)(({ theme }) => ({
 }));
 
 export default function FeaturedProjects() {
-  const navigate = useNavigate();
-  const onButtonClick = (project: Project) => {
-    if (project.linkUrl) {
-      window.open(project.linkUrl, "_blank");
-    } else {
-      navigate(
-        `projects/${project.title.toLocaleLowerCase().replace(" ", "-")}`,
-      );
-    }
-  };
-
   const sectionRef = useRef<HTMLDivElement>(null);
   const { hash } = useLocation();
   useEffect(() => {
@@ -92,7 +93,12 @@ export default function FeaturedProjects() {
               </Typography>
               <Typography>{project.description}</Typography>
             </ProjectTextContainer>
-            <Box flex={1}>
+            <Box
+              flex={1}
+              component={project.imageLink ? "a" : "div"}
+              href={project.imageLink}
+              target={project.imageLink && "_blank"}
+            >
               <img src={project.imageUrl} width="100% " />
             </Box>
           </Box>
